@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="example_field_position_partner_form_view" model="ir.ui.view">
+        <field name="name">example.field.position.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <!-- We add field "name_before" just before "website" -->
+            <xpath expr="//field[@name='website']" position="before">
+                <field name="name_before"/>
+            </xpath>
+            <!-- We add field "name_after" just after "website" -->
+            <xpath expr="//field[@name='website']" position="after">
+                <field name="name_after"/>
+            </xpath>
+            <!-- We put field "name_inside" inside page "sales_purchases" -->
+            <!-- We can omit `position='inside` because it's the default one -->
+            <xpath expr="//page[@name='sales_purchases']" position="inside">
+                <field name="name_inside"/>
+            </xpath>
+            <!-- We replace field "title" to "name_replace" -->
+            <!-- So, field "title" will be removed and replaced by field "name_replace" -->
+            <xpath expr="//field[@name='title']" position="replace">
+                <field name="name_replace"/>
+            </xpath>
+
+            <!-- The next 4 fields will not be correctly displayed. See README.md for more informations -->
+            <xpath expr="//field[@name='street']" position="before">
+                <field name="incorrect_display"/>
+            </xpath>
+
+            <xpath expr="//field[@name='mobile']" position="after">
+                <field name="incorrect_display2"/>
+            </xpath>
+
+            <!-- Here we add more complex structure like pages & groups -->
+            <xpath expr="//page[@name='internal_notes']" position="before">
+                <page name="before_page" string="Before Page">
+                    <p>Heyy, this is a message inside 'before_page' page</p>
+                </page>
+            </xpath>
+            <xpath expr="//page[@name='internal_notes']" position="after">
+                <page name="after_page" string="After Page">
+                    <p>Heyy, this is a message inside 'after_page' page</p>
+                </page>
+            </xpath>
+        </field>
+    </record>g
+</odoo>
