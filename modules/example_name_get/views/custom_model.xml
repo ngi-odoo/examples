@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_custom_model_tree_view" model="ir.ui.view">
+        <field name="name">custom.model.tree</field>
+        <field name="model">custom.model</field>
+        <field name="arch" type="xml">
+            <tree string="Custom Model">
+                <field name="name"/>
+                <field name="custom_int"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_custom_model_form_view" model="ir.ui.view">
+        <field name="name">custom.model.form</field>
+        <field name="model">custom.model</field>
+        <field name="arch" type="xml">
+            <form string="Custom Models">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="custom_name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="name"/>
+                        <field name="custom_int"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_custom_model" model="ir.actions.act_window">
+        <field name="name">Custom Model</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">custom.model</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_custom_model_tree_view"/>
+    </record>
+
+    <menuitem id="menu_custom_model"
+        name="Custom Model"
+        parent="contacts.res_partner_menu_config"
+        action="action_custom_model"
+        sequence="40"/>
+</odoo>
